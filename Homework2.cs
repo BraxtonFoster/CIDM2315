@@ -1,53 +1,106 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
-namespace Homework2
+class Program
 {
-    class Program
+    //*** Do NOT change the code in Main ***
+    public static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.Write("Enter a letter grade: ");
-            char userInput = Console.ReadKey().KeyChar;
-double result = LetterGradeToGPA(userInput);
-if (result == -1)
-{
-    Console.WriteLine("\nWrong Letter Grade!");
-}
-else
-{
-    Console.WriteLine("\nGPA Point:" + result);
-}
-        }
+        // Test Q1
+        int[] int_array = { 11, 23, 31, 42, 53 };
+        ArraySum(int_array);
 
-        static double LetterGradeToGPA(char letterGrade)
-        {
-            char upperCaseGrade = char.ToUpper(letterGrade);
 
-            if (upperCaseGrade == 'A')
-              {
-                  return 4.0;
-              }
-              else if (upperCaseGrade == 'B')
+        // Input 2d array for Q2
+        int[,] array_2d = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+
+        // Test Q2.1
+        PrintAllOddNumber(array_2d);
+
+
+        // Test Q2.2
+        Console.WriteLine($"\nSum of 2d array: {ElementSum(array_2d)}");
+
+
+        // Test Q2.3
+        int[,] Q2_3 = DoubleArray(array_2d);
+        Console.WriteLine("The new 2d array:");
+        for (int i = 0; i < Q2_3.GetLength(0); i++)
+        {
+            for (int j = 0; j < Q2_3.GetLength(1); j++)
             {
-                return 3.0;
+                Console.Write(Q2_3[i, j] + " ");
             }
-            else if (upperCaseGrade == 'C')
+            Console.WriteLine();
+        }
+    }
+
+
+
+
+    // **Complete the following methods, then run the program to check outputs**
+    // Q1: calculate the sum of elements in a given int_array (4 points)
+    public static void ArraySum(int[] int_array)
+    {
+        //put your answer below
+        int sum = 0;
+        foreach (int num in int_array)
+        {
+            sum += num;
+        }
+        Console.WriteLine($"Sum of elements in the array: {sum}");
+    }
+
+
+    //Q2.1: given a 2d array, print all the odd elements (2 points)
+    public static void PrintAllOddNumber(int[,] array_2d)
+    {
+        //put your answer below
+        Console.WriteLine("Odd elements in the 2d array:");
+        for (int i = 0; i < array_2d.GetLength(0); i++)
+        {
+            for (int j = 0; j < array_2d.GetLength(1); j++)
             {
-                return 2.0;
-            }
-            else if (upperCaseGrade == 'D')
-            {
-                return 1.0;
-            }
-            else if (upperCaseGrade == 'F')
-            {
-                return 0.0;
-            }
-            else
-            {
-                return -1;
+                if (array_2d[i, j] % 2 != 0)
+                {
+                    Console.Write(array_2d[i, j] + " ");
+                }
             }
         }
+        Console.WriteLine();
+    }
+    //Q2.2: given a 2d array, return the sum of all elements (2 points)
+    public static int ElementSum(int[,] array_2d)
+    {
+        //put your answer below
+        int sum = 0;
+        for (int i = 0; i < array_2d.GetLength(0); i++)
+        {
+            for (int j = 0; j < array_2d.GetLength(1); j++)
+            {
+                sum += array_2d[i, j];
+            }
+        }
+        return sum;
+    }
+
+
+    // Q2.3: given a 2d array, double its element values and return it (2 points)
+    public static int[,] DoubleArray(int[,] array_2d)
+    {
+        //put your answer below
+        int[,] doubledArray = new int[array_2d.GetLength(0), array_2d.GetLength(1)];
+        for (int i = 0; i < array_2d.GetLength(0); i++)
+        {
+            for (int j = 0; j < array_2d.GetLength(1); j++)
+            {
+                doubledArray[i, j] = array_2d[i, j] * 2;
+            }
+        }
+        return doubledArray;
     }
 }
